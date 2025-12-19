@@ -1,0 +1,223 @@
+:root {
+  --blue: #00a3e0;
+  --pink: #e91e63;
+  --yellow: #f5c518;
+  --theme: var(--blue);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #eaf6fb;
+  transition: background 0.3s ease;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+  padding: 40px;
+  gap: 60px;
+}
+
+.preview {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.umbrella-wrapper {
+  position: relative;
+  width: 420px;
+}
+
+#umbrella {
+  width: 100%;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.umbrella-fade {
+  opacity: 0;
+  transform: scale(0.97);
+}
+
+#logo {
+  position: absolute;
+  bottom: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 140px;
+  display: none;
+  animation: logoFade 0.4s ease forwards;
+}
+
+@keyframes logoFade {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Main loader container */
+#loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  display: none;
+}
+
+/* Rotating icon (SAME LOGIC AS BUTTON LOADER) */
+#loader .loader-icon {
+  width: 100%;
+  height: 100%;
+  animation: spin 1s linear infinite;
+}
+
+/* Rotation keyframes */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Controls */
+.controls {
+  width: 360px;
+  padding: 30px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.swatches {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  cursor: pointer;
+}
+
+.swatch[data-color="blue"] { background: var(--blue); }
+.swatch[data-color="pink"] { background: var(--pink); }
+.swatch[data-color="yellow"] { background: var(--yellow); }
+
+.swatch.active {
+  border-color: #333;
+}
+
+.subtitle {
+  font-weight: bold;
+}
+
+.helper {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* ───── Upload Button ───── */
+
+.upload-btn {
+  width: 100%;
+  height: 54px;
+  background: var(--theme);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.15s ease;
+}
+
+.upload-btn img {
+  width: 18px;
+  filter: invert(1);
+}
+
+.upload-btn:hover {
+  transform: translateY(-1px);
+}
+
+.upload-btn:active {
+  transform: translateY(0);
+}
+
+.upload-btn .close {
+  display: none;
+  margin-left: auto;
+  margin-right: 14px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.btn-loader {
+  display: none;
+}
+
+.upload-btn.uploading .upload-icon {
+  display: none;
+}
+
+.upload-btn.uploading .btn-loader {
+  display: block;
+}
+
+.upload-btn.uploading .btn-loader img {
+  animation: spin 1s linear infinite;
+}
+
+.upload-btn.uploaded .close {
+  display: block;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ───── Mobile ───── */
+
+@media (max-width: 768px) {
+  .app {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .umbrella-wrapper {
+    max-width: 320px;
+  }
+
+  .controls {
+    width: 100%;
+  }
+}
